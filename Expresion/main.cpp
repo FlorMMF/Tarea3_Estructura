@@ -1,13 +1,13 @@
 #include <iostream>
 #include <cstring>
-#include "Pila.hpp"
-#include "Vector.hpp"
+#include "Expresion.hpp"
+
 using namespace std;
 
 int main()
 {
     try{
-        Pila<char> PilaApertura;
+        Pila PilaApertura;
         char *elemento = new char [100];
         elemento = "{2+1+2}";
 
@@ -47,3 +47,4 @@ int main()
 
     return 0;
 }
+

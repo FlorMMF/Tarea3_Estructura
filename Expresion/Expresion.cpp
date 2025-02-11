@@ -1,25 +1,25 @@
-    #include <iostream>
+   #include <iostream>
 
-
+#include "Expresion.hpp"
 
 
 //******************************************
-template <typename Tipo>
-Pila<Tipo>::Pila(): numElem(0), tope(nullptr){
+
+Pila::Pila(): numElem(0), tope(nullptr){
 
 
 }
-template <typename Tipo>
-Pila<Tipo>::Pila(const Pila<Tipo> &p): numElem(0), tope(nullptr){
+
+Pila::Pila(const Pila &p): numElem(0), tope(nullptr){
     *this = p;
 }
- template <typename Tipo>
-Pila<Tipo>::~Pila(){
+
+Pila::~Pila(){
     Vaciar();
 }
 
-template <typename Tipo>
-Pila<Tipo> & Pila<Tipo>::operator=(const Pila<Tipo> &v){
+
+Pila & Pila::operator=(const Pila &v){
      if (this == &v) return *this;
     this ->Vaciar();
     Elemento *aux = v.tope;
@@ -39,13 +39,13 @@ Pila<Tipo> & Pila<Tipo>::operator=(const Pila<Tipo> &v){
 
  }
 
-template <typename Tipo>
-void Pila<Tipo>::Vaciar(){
+
+void Pila::Vaciar(){
     while(!EstaVacia()) Desapilar();
 }
 
-template <typename Tipo>
-void Pila<Tipo>::Apilar(Tipo valor){
+
+void Pila::Apilar(char valor){
     Elemento *nuevo = new Elemento;
     nuevo -> valor = valor;
     nuevo ->  siguiente = tope;
@@ -54,8 +54,8 @@ void Pila<Tipo>::Apilar(Tipo valor){
 
 }
 
-template <typename Tipo>
-void Pila<Tipo>::Desapilar(){
+
+void Pila::Desapilar(){
     if(EstaVacia())throw "La Pila esta vac\241a";
     Elemento *porBorrar =tope;
     tope = tope -> siguiente;
@@ -63,23 +63,23 @@ void Pila<Tipo>::Desapilar(){
     --numElem;
 }
 
-template <typename Tipo>
-Tipo Pila<Tipo>::ObtenerTOPE() const {
+
+char Pila::ObtenerTOPE() const {
     if(EstaVacia()) throw "Esta pila esta vacia...";
     return tope -> valor;
 
 }
 
-template <typename Tipo>
-bool Pila<Tipo>::EstaVacia() const{
+
+bool Pila::EstaVacia() const{
     return numElem == 0;
 }
 
 
 
 
-template <typename Tipo>
-void Pila<Tipo>::imprimir() const{
+
+void Pila::imprimir() const{
     Elemento *aux = tope;
 
     while(aux != nullptr){

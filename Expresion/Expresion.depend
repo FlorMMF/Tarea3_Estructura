@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1739247825 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\expresion\main.cpp
+	<iostream>
+	<cstring>
+	"Expresion.hpp"
+
+1739247746 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\expresion\expresion.cpp
+	<iostream>
+	"Expresion.hpp"
+
+1739247817 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\expresion\expresion.hpp
+
