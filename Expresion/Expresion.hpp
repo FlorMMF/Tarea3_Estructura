@@ -9,25 +9,15 @@
 /**Clase de tipo lifo, contenedor de vaolres de tipo double
     \param Tipo de dato
  */
-class Pila{
+class Expresion{
 public:
-    Pila();
-    Pila(const Pila &p);
-    ~Pila();
-    Pila & operator=(const Pila &v);
-    void Apilar(char valor);
-    void Desapilar();
-    char ObtenerTOPE() const;
-    bool EstaVacia() const;
-    void Vaciar();
-    //para pruebas
-    void imprimir() const;
+    Expresion();
+    Expresion(char * cadena);
+
+    bool Validar(char * cadena);
+
 private:
-    int numElem;
-    struct Elemento{
-        char valor;
-        Elemento *siguiente;
-    }*tope;
+    char * expresionNormal;
 
 };
 

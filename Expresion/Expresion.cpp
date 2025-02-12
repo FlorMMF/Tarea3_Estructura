@@ -1,93 +1,47 @@
    #include <iostream>
 
 #include "Expresion.hpp"
-
+#include "Pila.hpp"
 
 //******************************************
 
-Pila::Pila(): numElem(0), tope(nullptr){
 
 
-}
-
-Pila::Pila(const Pila &p): numElem(0), tope(nullptr){
-    *this = p;
-}
-
-Pila::~Pila(){
-    Vaciar();
-}
-
-
-Pila & Pila::operator=(const Pila &v){
-     if (this == &v) return *this;
-    this ->Vaciar();
-    Elemento *aux = v.tope;
-    Elemento *pilaAux[v.numElem];
-
-    for(int i =v.numElem -1; i >= 0 ; --i){
-        pilaAux[i] = aux;
-        aux = aux -> siguiente;
-    }
-
-    for(int i =0; i < v.numElem ; ++i){
-        Apilar(pilaAux[i] -> valor);
-    }
-
-
-    return *this;
-
- }
-
-
-void Pila::Vaciar(){
-    while(!EstaVacia()) Desapilar();
-}
-
-
-void Pila::Apilar(char valor){
-    Elemento *nuevo = new Elemento;
-    nuevo -> valor = valor;
-    nuevo ->  siguiente = tope;
-    tope = nuevo;
-    ++numElem;
+Expresion::Expresion(char * cadena){
+    if(Validar(cadena)){
+        expresionNormal = cadena;
+    }else throw "No se ha ingresado la cadena correctamente";
 
 }
 
+bool Expresion::Validar(char * cadena){
+        Pila<char> PilaApertura;
 
-void Pila::Desapilar(){
-    if(EstaVacia())throw "La Pila esta vac\241a";
-    Elemento *porBorrar =tope;
-    tope = tope -> siguiente;
-    delete porBorrar;
-    --numElem;
+        for(int i = 0; i < strlen(cadena) ; ++i){
+            if((cadena[i] == '(') || (cadena[i] == '[') || (cadena[i] == '{')){
+                PilaApertura.Apilar(cadena[i]);
+            }
+
+            if((cadena[i] == ')') || (cadena[i] == ']') || (cadena[i] == '}')){
+                if(PilaApertura.EstaVacia() == true) return false;
+
+                if((cadena[i] == ')' && PilaApertura.ObtenerTOPE() == '(') || (cadena[i] == ']'&& PilaApertura.ObtenerTOPE() == '[') || (cadena[i] == '}' && PilaApertura.ObtenerTOPE() == '{')){
+
+                    PilaApertura.Desapilar();
+
+                }else {
+                    return false;
+                }
+            }
+
+            if(((cadena[i] == '+')||(cadena[i] == '-')||(cadena[i] == '*')||(cadena[i] == '/')||(cadena[i] == '^'))&&
+               (((cadena[i-1] == '(')||(cadena[i+1] == ')'))||(cadena[i-1] == '{')||(cadena[i+1] == '}') || (cadena[i-1] == '[')||(cadena[i+1] == ']')) ){
+                return false;
+            }
+        }
+
+
+
+        PilaApertura.imprimir();
+        return true;
 }
-
-
-char Pila::ObtenerTOPE() const {
-    if(EstaVacia()) throw "Esta pila esta vacia...";
-    return tope -> valor;
-
-}
-
-
-bool Pila::EstaVacia() const{
-    return numElem == 0;
-}
-
-
-
-
-
-void Pila::imprimir() const{
-    Elemento *aux = tope;
-
-    while(aux != nullptr){
-        std::cout << aux -> valor <<  ",";
-        aux = aux -> siguiente;
-    }
-
-
-
-}
-
