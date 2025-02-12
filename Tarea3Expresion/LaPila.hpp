@@ -1,5 +1,5 @@
-#ifndef PILA_HPP_INCLUDED
-#define PILA_HPP_INCLUDED
+#ifndef LAPILA_HPP_INCLUDED
+#define LAPILA_HPP_INCLUDED
 
 template <typename Tipo>
 /**Clase de tipo lifo, contenedor de vaolres de tipo double
@@ -29,6 +29,6 @@ private:
     }*tope;
 
 };
-#include "Pila.tpp"
+#include "LaPila.tpp"
 
-#endif // PILA_HPP_INCLUDED
+#endif // LAPILA_HPP_INCLUDED

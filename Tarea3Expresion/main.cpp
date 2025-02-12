@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
-#include "Expresion.hpp"
-#include "Pila.hpp"
+#include "LaExpresion.hpp"
+#include "LaPila.hpp"
 
 using namespace std;
 
@@ -10,8 +10,9 @@ int main()
     try{
 
         char *elemento = new char [100];
-        elemento = "2{2/1+2}";
+        elemento = "2{/1+2}";
         Expresion ejemplo(elemento);
+
 //        for(int i = 0; i < strlen(elemento) ; ++i){
 //            if((elemento[i] == '(') || (elemento[i] == '[') || (elemento[i] == '{')){
 //                PilaApertura.Apilar(elemento[i]);
