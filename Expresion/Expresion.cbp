@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="Expresion.cpp" />
 		<Unit filename="Expresion.hpp" />
+		<Unit filename="Pila.hpp" />
+		<Unit filename="Pila.tpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
