@@ -1,4 +1,5 @@
-   #include <iostream>
+#include <iostream>
+#include <cctype>
 #include <cstring>
 #include "LaExpresion.hpp"
 #include "LaPila.hpp"
@@ -38,10 +39,22 @@ bool Expresion::Validar(char * cadena){
                (((cadena[i-1] == '(')||(cadena[i+1] == ')'))||(cadena[i-1] == '{')||(cadena[i+1] == '}') || (cadena[i-1] == '[')||(cadena[i+1] == ']')) ){
                 return false;
             }
+
+            if ((isdigit(cadena[i-1]) && cadena[i] == '(') || (isdigit(cadena[i-1]) && cadena[i] == '{') || (isdigit(cadena[i-1]) && cadena[i] == '[' ) ||
+                 (isdigit(cadena[i+1]) && cadena[i] == ')') || (isdigit(cadena[i+1]) && cadena[i] == '}') || (isdigit(cadena[i+1]) && cadena[i] == ']') ) { // Verifica si el carácter es un dígito
+                return false;
+            }
         }
 
 
 
         PilaApertura.imprimir();
         return true;
+}
+
+char * Expresion::conversionPolaca(char * cadena){
+    bool out = true;
+    while(out){
+
+    }
 }

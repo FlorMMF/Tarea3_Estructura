@@ -10,6 +10,7 @@ public:
     Expresion(char * cadena);
 
     bool Validar(char * cadena);
+    char * conversionPolaca(char * cadena);
 
 private:
     char * expresionNormal;
