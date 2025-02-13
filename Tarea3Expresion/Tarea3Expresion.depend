@@ -20,3 +20,24 @@
 	"LaExpresion.hpp"
 	"LaPila.hpp"
 
+1739372251 source:c:\users\surface\documents\estructura de datos\tarea3_estructura\tarea3expresion\laexpresion.cpp
+	<iostream>
+	<cctype>
+	<cstring>
+	"LaExpresion.hpp"
+	"LaPila.hpp"
+
+1739371383 c:\users\surface\documents\estructura de datos\tarea3_estructura\tarea3expresion\laexpresion.hpp
+
+1739369228 c:\users\surface\documents\estructura de datos\tarea3_estructura\tarea3expresion\lapila.hpp
+	"LaPila.tpp"
+
+1739369228 c:\users\surface\documents\estructura de datos\tarea3_estructura\tarea3expresion\lapila.tpp
+	<iostream>
+
+1739372106 source:c:\users\surface\documents\estructura de datos\tarea3_estructura\tarea3expresion\main.cpp
+	<iostream>
+	<cstring>
+	"LaExpresion.hpp"
+	"LaPila.hpp"
+

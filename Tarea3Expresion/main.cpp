@@ -9,11 +9,11 @@ int main()
 {
     try{
 
-        char *elemento = new char [100];
-        elemento = "2*{3/1+2}/6";
+        string elemento;
+        elemento = "2*4444";
         Expresion ejemplo(elemento);
 
-        cout << endl;
+
         cout << endl << endl;
 
 

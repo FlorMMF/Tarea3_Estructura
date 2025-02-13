@@ -8,17 +8,18 @@
 
 
 
-Expresion::Expresion(char * cadena){
+Expresion::Expresion(std::string cadena){
     if(Validar(cadena)){
         expresionNormal = cadena;
+        expresionPolaca = conversionPolaca();
     }else throw "No se ha ingresado la cadena correctamente";
 
 }
 
-bool Expresion::Validar(char * cadena){
+bool Expresion::Validar(std::string cadena){
         Pila<char> PilaApertura;
 
-        for(int i = 0; i < strlen(cadena) ; ++i){
+        for(unsigned i = 0; i < cadena.size() ; ++i){
             if((cadena[i] == '(') || (cadena[i] == '[') || (cadena[i] == '{')){
                 PilaApertura.Apilar(cadena[i]);
             }
@@ -52,9 +53,19 @@ bool Expresion::Validar(char * cadena){
         return true;
 }
 
-char * Expresion::conversionPolaca(char * cadena){
-    bool out = true;
-    while(out){
+std::string Expresion::conversionPolaca(){
+//    Pila<std::string> PilaSimbolos;
+//    std::string cadenaNum;
+//    std::string cadena = expresionNormal;
+//    for(unsigned i = 0; i < cadena.size() ; ++i){
+//        if( isdigit(cadena[i]) ){
+//            cadenaNum += cadena[i];
+//        }else{
+//            PilaSimbolos.Apilar(cadenaNum);
+//            std::cout << cadenaNum << ", ";
+//            cadenaNum.clear();
+//        }
+//    }
+//    PilaSimbolos.imprimir();
 
-    }
 }

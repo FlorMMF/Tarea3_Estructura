@@ -7,13 +7,14 @@
 class Expresion{
 public:
     Expresion();
-    Expresion(char * cadena);
+    Expresion(std::string cadena);
 
-    bool Validar(char * cadena);
-    char * conversionPolaca(char * cadena);
+    bool Validar(std::string cadena);
+    std::string conversionPolaca();
 
 private:
-    char * expresionNormal;
+    std::string expresionNormal;
+    std::string expresionPolaca;
 
 };
 
