@@ -11,6 +11,7 @@ public:
 
     bool Validar(std::string cadena);
     std::string conversionPolaca();
+    int Prioridad(char simbolo);
 
 private:
     std::string expresionNormal;

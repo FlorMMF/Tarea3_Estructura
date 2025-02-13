@@ -54,7 +54,7 @@ bool Expresion::Validar(std::string cadena){
 }
 
 std::string Expresion::conversionPolaca(){
-//    Pila<std::string> PilaSimbolos;
+//
 //    std::string cadenaNum;
 //    std::string cadena = expresionNormal;
 //    for(unsigned i = 0; i < cadena.size() ; ++i){
@@ -67,5 +67,65 @@ std::string Expresion::conversionPolaca(){
 //        }
 //    }
 //    PilaSimbolos.imprimir();
+    Pila<char> PilaSimbolos;
+    int j = 0;
+    for(unsigned i = 0; i < expresionNormal.size() ; ++i){
 
+       if(isdigit(expresionNormal[i])){
+            expresionPolaca += expresionNormal[i];
+       }else if(PilaSimbolos.EstaVacia() || (expresionNormal[i] == '(') || (expresionNormal[i] == '{') || (expresionNormal[i] == '[')){
+            PilaSimbolos.Apilar(expresionNormal[i]);
+      }else if (expresionNormal[i] == ')'){
+            j = i - 1;
+            while (expresionNormal[j] != '(' ){
+                expresionPolaca += PilaSimbolos.ObtenerTOPE();
+                PilaSimbolos.Desapilar();
+                --j;
+            }
+       }else if (expresionNormal[i] == '}'){
+             j = i - 1;
+            while (expresionNormal[j] != '{' ){
+                expresionPolaca += PilaSimbolos.ObtenerTOPE();
+                PilaSimbolos.Desapilar();
+                --j;
+            }
+       }else if (expresionNormal[i] == ']'){
+             j = i - 1;
+            while (expresionNormal[j] != '[' ){
+                expresionPolaca += PilaSimbolos.ObtenerTOPE();
+                PilaSimbolos.Desapilar();
+                --j;
+            }
+       }else if(Prioridad(expresionNormal[i]) < Prioridad(PilaSimbolos.ObtenerTOPE())){
+            expresionPolaca += PilaSimbolos.ObtenerTOPE();
+            PilaSimbolos.Desapilar();
+       }else{
+            PilaSimbolos.Apilar(expresionNormal[i]);
+       }
+
+    }
+    std::cout << expresionPolaca;
+    return expresionPolaca;
+
+}
+
+int Expresion::Prioridad(char simbolo){
+    switch(simbolo){
+    case '+':
+        return 1;
+        break;
+    case '-':
+        return 1;
+        break;
+    case '*':
+        return 2;
+        break;
+    case '/':
+        return 2;
+        break;
+    case '^':
+        return 3;
+        break;
+    }
+    return 0;
 }
