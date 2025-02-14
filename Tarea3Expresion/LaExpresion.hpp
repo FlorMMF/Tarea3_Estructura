@@ -12,10 +12,13 @@ public:
     bool Validar(std::string cadena);
     std::string conversionPolaca();
     int Prioridad(char simbolo);
+    void imprimir() const;
+    double Evaluar();
 
 private:
     std::string expresionNormal;
     std::string expresionPolaca;
+    bool Valida;
 
 };
 

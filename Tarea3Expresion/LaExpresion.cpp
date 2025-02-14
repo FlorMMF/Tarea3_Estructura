@@ -1,17 +1,20 @@
 #include <iostream>
 #include <cctype>
 #include <cstring>
+#include <cmath>
 #include "LaExpresion.hpp"
 #include "LaPila.hpp"
 
 //******************************************
 
-
+Expresion::Expresion(): expresionNormal(""), expresionPolaca(""), Valida(false){
+}
 
 Expresion::Expresion(std::string cadena){
     if(Validar(cadena)){
         expresionNormal = cadena;
         expresionPolaca = conversionPolaca();
+        Valida=true;
     }else throw "No se ha ingresado la cadena correctamente";
 
 }
@@ -42,7 +45,7 @@ bool Expresion::Validar(std::string cadena){
             }
 
             if ((isdigit(cadena[i-1]) && cadena[i] == '(') || (isdigit(cadena[i-1]) && cadena[i] == '{') || (isdigit(cadena[i-1]) && cadena[i] == '[' ) ||
-                 (isdigit(cadena[i+1]) && cadena[i] == ')') || (isdigit(cadena[i+1]) && cadena[i] == '}') || (isdigit(cadena[i+1]) && cadena[i] == ']') ) { // Verifica si el carácter es un dígito
+                 (isdigit(cadena[i+1]) && cadena[i] == ')') || (isdigit(cadena[i+1]) && cadena[i] == '}') || (isdigit(cadena[i+1]) && cadena[i] == ']') ) { // Verifica si el carï¿½cter es un dï¿½gito
                 return false;
             }
         }
@@ -128,4 +131,32 @@ int Expresion::Prioridad(char simbolo){
         break;
     }
     return 0;
+}
+
+void Expresion::imprimir() const{
+    std::cout << "Expresion no fija: " << expresionNormal << std::endl;
+    std::cout << "Expresion polaca: " << expresionPolaca << std::endl;
+    std::cout << "Es vÃ¡lida: " << (Valida ? "Ye" : "Nah") << std::endl;
+}
+
+double Expresion::Evaluar(){
+    Pila<double> pila;
+    for (char c : expresionPolaca){
+        if (isdigit(c)){
+            pila.Apilar(c - '0');
+        } else {
+            double operando2 = pila.ObtenerTOPE();
+            pila.Desapilar();
+            double operando1 = pila.ObtenerTOPE();
+            pila.Desapilar();
+            switch (c){
+                case '+': pila.Apilar(operando1 + operando2); break;
+                case '-': pila.Apilar(operando1 - operando2); break;
+                case '*': pila.Apilar(operando1 * operando2); break;
+                case '/': pila.Apilar(operando1 / operando2); break;
+                case '^': pila.Apilar(pow(operando1,  operando2)); break;
+            }
+        }
+    }
+    return pila.ObtenerTOPE();
 }

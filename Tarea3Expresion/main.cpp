@@ -12,10 +12,9 @@ int main()
         string elemento;
         elemento = "2*4444";
         Expresion ejemplo(elemento);
-
-
-        cout << endl << endl;
-
+        
+        ejemplo.imprimir();
+        cout << "Resultado de la evaluación: " << ejemplo.Evaluar() << endl;
 
     }catch(const char *mensaje){
         cerr << mensaje;
