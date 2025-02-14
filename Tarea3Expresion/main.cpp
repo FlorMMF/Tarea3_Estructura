@@ -10,9 +10,9 @@ int main()
     try{
 
         string elemento;
-        elemento = "2*4444";
+        elemento = "2*4+4";
         Expresion ejemplo(elemento);
-        
+
         ejemplo.imprimir();
         cout << "Resultado de la evaluación: " << ejemplo.Evaluar() << endl;
 

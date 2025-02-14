@@ -20,40 +20,44 @@ Expresion::Expresion(std::string cadena){
 }
 
 bool Expresion::Validar(std::string cadena){
-        Pila<char> PilaApertura;
+    Pila<char> PilaApertura;
 
-        for(unsigned i = 0; i < cadena.size() ; ++i){
-            if((cadena[i] == '(') || (cadena[i] == '[') || (cadena[i] == '{')){
-                PilaApertura.Apilar(cadena[i]);
-            }
+    for(unsigned i = 0; i < cadena.size(); ++i) {
 
-            if((cadena[i] == ')') || (cadena[i] == ']') || (cadena[i] == '}')){
-                if(PilaApertura.EstaVacia() == true) return false;
+        if((cadena[i] == '(') || (cadena[i] == '[') || (cadena[i] == '{')) {
+            PilaApertura.Apilar(cadena[i]);
+        }
 
-                if((cadena[i] == ')' && PilaApertura.ObtenerTOPE() == '(') || (cadena[i] == ']'&& PilaApertura.ObtenerTOPE() == '[') || (cadena[i] == '}' && PilaApertura.ObtenerTOPE() == '{')){
 
-                    PilaApertura.Desapilar();
+        if((cadena[i] == ')') || (cadena[i] == ']') || (cadena[i] == '}')) {
+            if(PilaApertura.EstaVacia()) return false;
 
-                }else {
-                    return false;
-                }
-            }
-
-            if(((cadena[i] == '+')||(cadena[i] == '-')||(cadena[i] == '*')||(cadena[i] == '/')||(cadena[i] == '^'))&&
-               (((cadena[i-1] == '(')||(cadena[i+1] == ')'))||(cadena[i-1] == '{')||(cadena[i+1] == '}') || (cadena[i-1] == '[')||(cadena[i+1] == ']')) ){
-                return false;
-            }
-
-            if ((isdigit(cadena[i-1]) && cadena[i] == '(') || (isdigit(cadena[i-1]) && cadena[i] == '{') || (isdigit(cadena[i-1]) && cadena[i] == '[' ) ||
-                 (isdigit(cadena[i+1]) && cadena[i] == ')') || (isdigit(cadena[i+1]) && cadena[i] == '}') || (isdigit(cadena[i+1]) && cadena[i] == ']') ) { // Verifica si el car�cter es un d�gito
+            if((cadena[i] == ')' && PilaApertura.ObtenerTOPE() == '(') ||
+               (cadena[i] == ']' && PilaApertura.ObtenerTOPE() == '[') ||
+               (cadena[i] == '}' && PilaApertura.ObtenerTOPE() == '{')) {
+                PilaApertura.Desapilar();
+            } else {
                 return false;
             }
         }
 
 
+        if(((cadena[i] == '+')||(cadena[i] == '-')||(cadena[i] == '*')||(cadena[i] == '/')||(cadena[i] == '^'))) {
+            if(i > 0 && ((cadena[i-1] == '(') || (cadena[i-1] == '{') || (cadena[i-1] == '['))) return false;
+            if(i < cadena.size()-1 && ((cadena[i+1] == ')') || (cadena[i+1] == '}') || (cadena[i+1] == ']'))) return false;
+        }
 
-        PilaApertura.imprimir();
-        return true;
+
+        if(i > 0 && isdigit(cadena[i-1])) {
+            if(cadena[i] == '(' || cadena[i] == '{' || cadena[i] == '[') return false;
+        }
+        if(i < cadena.size()-1 && isdigit(cadena[i+1])) {
+            if(cadena[i] == ')' || cadena[i] == '}' || cadena[i] == ']') return false;
+        }
+    }
+
+
+    return PilaApertura.EstaVacia();
 }
 
 std::string Expresion::conversionPolaca(){
@@ -106,6 +110,11 @@ std::string Expresion::conversionPolaca(){
             PilaSimbolos.Apilar(expresionNormal[i]);
        }
 
+    }
+
+    while (!PilaSimbolos.EstaVacia()){
+        expresionPolaca += PilaSimbolos.ObtenerTOPE();
+        PilaSimbolos.Desapilar();
     }
     std::cout << expresionPolaca;
     return expresionPolaca;
