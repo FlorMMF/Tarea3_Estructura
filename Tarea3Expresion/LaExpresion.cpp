@@ -15,7 +15,7 @@ Expresion::Expresion(std::string cadena){
         expresionNormal = cadena;
         expresionPolaca = conversionPolaca();
         Valida=true;
-    }else throw "No se ha ingresado la cadena correctamente";
+    }else Valida = false;
 
 }
 
@@ -61,35 +61,25 @@ bool Expresion::Validar(std::string cadena){
 }
 
 std::string Expresion::conversionPolaca(){
-//
-//    std::string cadenaNum;
-//    std::string cadena = expresionNormal;
-//    for(unsigned i = 0; i < cadena.size() ; ++i){
-//        if( isdigit(cadena[i]) ){
-//            cadenaNum += cadena[i];
-//        }else{
-//            PilaSimbolos.Apilar(cadenaNum);
-//            std::cout << cadenaNum << ", ";
-//            cadenaNum.clear();
-//        }
-//    }
-//    PilaSimbolos.imprimir();
+
+
     Pila<char> PilaSimbolos;
     int j = 0;
     for(unsigned i = 0; i < expresionNormal.size() ; ++i){
-
-       if(isdigit(expresionNormal[i])){
+        if((i > 0) && (isdigit(expresionNormal[i] )|| (expresionNormal[i] == '.' )) && (isdigit(expresionNormal[i-1]) || (expresionNormal[i-1] == '.') ) ){
+           expresionPolaca += expresionNormal[i];
+        }else if(isdigit(expresionNormal[i])){
             expresionPolaca += expresionNormal[i];
-       }else if(PilaSimbolos.EstaVacia() || (expresionNormal[i] == '(') || (expresionNormal[i] == '{') || (expresionNormal[i] == '[')){
+        }else if(PilaSimbolos.EstaVacia() || (expresionNormal[i] == '(') || (expresionNormal[i] == '{') || (expresionNormal[i] == '[')){
             PilaSimbolos.Apilar(expresionNormal[i]);
-      }else if (expresionNormal[i] == ')'){
+        }else if (expresionNormal[i] == ')'){
             j = i - 1;
             while (expresionNormal[j] != '(' ){
                 expresionPolaca += PilaSimbolos.ObtenerTOPE();
                 PilaSimbolos.Desapilar();
                 --j;
             }
-       }else if (expresionNormal[i] == '}'){
+        }else if (expresionNormal[i] == '}'){
              j = i - 1;
             while (expresionNormal[j] != '{' ){
                 expresionPolaca += PilaSimbolos.ObtenerTOPE();
@@ -110,13 +100,17 @@ std::string Expresion::conversionPolaca(){
             PilaSimbolos.Apilar(expresionNormal[i]);
        }
 
-    }
+       //Coloca comas
 
+
+    }
+    PilaSimbolos.imprimir();
     while (!PilaSimbolos.EstaVacia()){
         expresionPolaca += PilaSimbolos.ObtenerTOPE();
         PilaSimbolos.Desapilar();
     }
-    std::cout << expresionPolaca;
+
+     //
     return expresionPolaca;
 
 }
