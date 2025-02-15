@@ -10,7 +10,7 @@ int main()
     try{
 
         string elemento;
-        elemento = "2.5*4+4";
+        elemento = "22.5*(4+4)";
         Expresion ejemplo(elemento);
 
         ejemplo.imprimir();

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cctype>
 #include <cstring>
+#include <string>
 #include <cmath>
 #include "LaExpresion.hpp"
 #include "LaPila.hpp"
@@ -65,10 +66,15 @@ std::string Expresion::conversionPolaca(){
 
     Pila<char> PilaSimbolos;
     int j = 0;
+    int expPolacaLongitud;
     for(unsigned i = 0; i < expresionNormal.size() ; ++i){
-        if((i > 0) && (isdigit(expresionNormal[i] )|| (expresionNormal[i] == '.' )) && (isdigit(expresionNormal[i-1]) || (expresionNormal[i-1] == '.') ) ){
+        if((i > 0) && (isdigit(expresionNormal[i]) || (expresionNormal[i] == '.' )) &&
+           (isdigit(expresionNormal[i-1]) || (expresionNormal[i-1] == '.') ) ){
            expresionPolaca += expresionNormal[i];
         }else if(isdigit(expresionNormal[i])){
+            if(i > 0 && !isdigit(expresionNormal[i-1]) && expresionNormal[i-1] != '.') {
+                expresionPolaca += ',';  // Add comma before starting new number
+            }
             expresionPolaca += expresionNormal[i];
         }else if(PilaSimbolos.EstaVacia() || (expresionNormal[i] == '(') || (expresionNormal[i] == '{') || (expresionNormal[i] == '[')){
             PilaSimbolos.Apilar(expresionNormal[i]);
@@ -93,21 +99,38 @@ std::string Expresion::conversionPolaca(){
                 PilaSimbolos.Desapilar();
                 --j;
             }
-       }else if(Prioridad(expresionNormal[i]) < Prioridad(PilaSimbolos.ObtenerTOPE())){
-            expresionPolaca += PilaSimbolos.ObtenerTOPE();
-            PilaSimbolos.Desapilar();
-       }else{
+       }else if(Prioridad(expresionNormal[i]) <= Prioridad(PilaSimbolos.ObtenerTOPE())){
+            while(!PilaSimbolos.EstaVacia() &&
+                  Prioridad(expresionNormal[i]) <= Prioridad(PilaSimbolos.ObtenerTOPE())) {
+                expresionPolaca += PilaSimbolos.ObtenerTOPE();
+                expresionPolaca += ',';
+                PilaSimbolos.Desapilar();
+            }
+            PilaSimbolos.Apilar(expresionNormal[i]);
+        }else{
             PilaSimbolos.Apilar(expresionNormal[i]);
        }
-
-       //Coloca comas
-
+        while(expresionPolaca.back() == ','){
+             expPolacaLongitud = expresionPolaca.size();
+            if(!isdigit(expresionPolaca[expPolacaLongitud-2])){
+                expresionPolaca.pop_back();
+            }
+        }
 
     }
     PilaSimbolos.imprimir();
     while (!PilaSimbolos.EstaVacia()){
         expresionPolaca += PilaSimbolos.ObtenerTOPE();
         PilaSimbolos.Desapilar();
+    }
+
+    for(unsigned i = 0; i < expresionPolaca.size() ; ++i){
+        if(expresionPolaca[i] == ',' || expresionPolaca[i] == '(' || expresionPolaca[i] == '{' || expresionPolaca[i] == '[' ){
+            if(!isdigit(expresionPolaca[i-1])){
+
+                expresionPolaca.erase(i,1);
+            }
+        }
     }
 
      //
