@@ -4,15 +4,28 @@
 #include "LaPila.hpp"
 
 using namespace std;
+/**
 
+ * \file main.cpp
+
+ * Este archivo contiene las pruebas de la clase Expresion
+ * Se ingresa una expresion matemática y la clase la convierte a notacion polaca y la resuelve
+
+ * \author Flor Machado y Elias Peregrina
+
+ * \date 15/02/2025
+
+ */
 int main()
 {
     try{
-
+        cout << "Programa que resuelve una expresi\242n por medio de la Polaca Inversa" << endl;
+        cout << "Ingrese la expresi\242n matem\240tica que desea resolver" << endl;
         string elemento;
-        elemento = "22.5*(4+4)";
+        getline(cin,elemento);
+        //elemento = "2/1";
         Expresion ejemplo(elemento);
-
+        cout << endl;
         ejemplo.imprimir();
         cout << "Resultado de la evaluación: " << ejemplo.Evaluar() << endl;
 

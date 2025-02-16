@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1739590565 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\laexpresion.cpp
+1739670450 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\laexpresion.cpp
 	<iostream>
 	<cctype>
 	<cstring>
@@ -8,15 +8,15 @@
 	"LaExpresion.hpp"
 	"LaPila.hpp"
 
-1739511310 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\laexpresion.hpp
+1739669584 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\laexpresion.hpp
 
-1739333850 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\lapila.hpp
+1739668715 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\lapila.hpp
 	"LaPila.tpp"
 
-1739333946 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\lapila.tpp
+1739668715 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\lapila.tpp
 	<iostream>
 
-1739590479 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\main.cpp
+1739670390 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea3_estructura\tarea3expresion\main.cpp
 	<iostream>
 	<cstring>
 	"LaExpresion.hpp"

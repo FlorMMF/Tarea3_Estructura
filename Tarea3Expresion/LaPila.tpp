@@ -1,6 +1,16 @@
    #include <iostream>
 
+/**
 
+ * \file LaPila.tpp
+
+ * Este archivo contiene una plantilla para los métodos declarados en el archivo LaPila.hpp
+
+ * \author Flor Machado y Elias Peregrina
+
+ * \date 15/01/2025
+
+ */
 
 
 //******************************************

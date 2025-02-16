@@ -2,7 +2,18 @@
 #define LAPILA_HPP_INCLUDED
 
 template <typename Tipo>
-/**Clase de tipo lifo, contenedor de vaolres de tipo double
+/**
+
+ * \file LaPila.hpp
+
+ * Este archivo contiene la declaración de la clase Pila y sus métodos
+
+ * \author Flor Machado y Elias Peregrina
+
+ * \date 15/02/2025
+
+ */
+/**Clase de tipo lifo,
     \param Tipo de dato
  */
 class Pila{

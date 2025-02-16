@@ -7,6 +7,18 @@
 #include "LaPila.hpp"
 
 //******************************************
+/**
+
+ * \file LaExpresion.cpp
+
+ * Este archivo contiene funciones y constructores de la clase Expresion
+ * Se desarrollan los métodos declarados en el archivo LaExpresion.hpp
+
+ * \author Flor Machado y Elias Peregrina
+
+ * \date 15/02/2025
+
+ */
 
 Expresion::Expresion(): expresionNormal(""), expresionPolaca(""), Valida(false){
 }
@@ -27,6 +39,10 @@ bool Expresion::Validar(std::string cadena){
 
         if((cadena[i] == '(') || (cadena[i] == '[') || (cadena[i] == '{')) {
             PilaApertura.Apilar(cadena[i]);
+        }
+
+        if( (cadena [i+1] == '0') &&  (cadena[i] == '/') ){
+            return false;
         }
 
 
@@ -118,7 +134,7 @@ std::string Expresion::conversionPolaca(){
         }
 
     }
-    PilaSimbolos.imprimir();
+
     while (!PilaSimbolos.EstaVacia()){
         expresionPolaca += PilaSimbolos.ObtenerTOPE();
         PilaSimbolos.Desapilar();
