@@ -44,3 +44,28 @@
 	"LaExpresion.hpp"
 	"LaPila.hpp"
 
+1739680164 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea_conversapolaca\tarea3_estructura\tarea3expresion\laexpresion.cpp
+	<iostream>
+	<cctype>
+	<cstring>
+	<string>
+	<cmath>
+	<sstream>
+	<limits>
+	"LaExpresion.hpp"
+	"LaPila.hpp"
+
+1739679477 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea_conversapolaca\tarea3_estructura\tarea3expresion\laexpresion.hpp
+
+1739678764 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea_conversapolaca\tarea3_estructura\tarea3expresion\lapila.hpp
+	"LaPila.tpp"
+
+1739678764 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea_conversapolaca\tarea3_estructura\tarea3expresion\lapila.tpp
+	<iostream>
+
+1739679590 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\tarea_conversapolaca\tarea3_estructura\tarea3expresion\main.cpp
+	<iostream>
+	<cstring>
+	"LaExpresion.hpp"
+	"LaPila.hpp"
+

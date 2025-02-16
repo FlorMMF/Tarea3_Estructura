@@ -57,4 +57,7 @@ private:
 
 };
 
+std::string TextoPermitido(const char caracteres[], unsigned int longitudCaracteres);
+
+
 #endif // LAEXPRESION_HPP_INCLUDED

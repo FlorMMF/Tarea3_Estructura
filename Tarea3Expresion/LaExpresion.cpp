@@ -4,8 +4,11 @@
 #include <string>
 #include <cmath>
 #include <sstream>
+#include <limits>
 #include "LaExpresion.hpp"
 #include "LaPila.hpp"
+
+using namespace std;
 
 //******************************************
 /**
@@ -82,10 +85,10 @@ std::string Expresion::conversionPolaca(){
     Pila<char> PilaSimbolos;
     std::string salida;
     std::string numero;
-    
+
     for (unsigned i = 0; i < expresionNormal.size(); ++i){
         char c = expresionNormal[i];
-        
+
         if (isdigit(c) || c == '.'){
             numero += c;
         } else{
@@ -126,7 +129,7 @@ std::string Expresion::conversionPolaca(){
             }
         }
     }
-    
+
     if (!numero.empty()){
         salida += numero + ' ';
     }
@@ -136,7 +139,7 @@ std::string Expresion::conversionPolaca(){
         PilaSimbolos.Desapilar();
     }
     return salida;
-    
+
 }
 
 int Expresion::Prioridad(char simbolo){
@@ -179,7 +182,7 @@ double Expresion::Evaluar(){
             pila.Desapilar();
             double operando1 = pila.ObtenerTOPE();
             pila.Desapilar();
-            
+
             switch (digito[0]) {
                 case '+': pila.Apilar(operando1 + operando2); break;
                 case '-': pila.Apilar(operando1 - operando2); break;
@@ -192,3 +195,55 @@ double Expresion::Evaluar(){
 
     return pila.ObtenerTOPE();
 }
+
+std::string TextoPermitido(const char caracteres[], unsigned int longitudCaracteres)
+{
+    std::string inicial, text;
+    getline(std::cin, inicial);
+
+    for(char c : inicial) {
+        if(c != ' ') {
+            text += c;
+        }
+    }
+
+    while (true)
+    {
+        bool textoValido = true;
+
+
+        for (char c : text)
+        {
+            bool charValido = false;
+
+            // Check if current character is in the allowed characters array
+            for (unsigned int i = 0; i < longitudCaracteres; i++)
+            {
+                if (caracteres[i] == c)
+                {
+                    charValido = true;
+                    break;
+                }
+            }
+
+
+            if (!charValido)
+            {
+                textoValido = false;
+                break;
+            }
+        }
+
+        if (!textoValido)
+        {
+            std::cout << "\nIngresa de nuevo tu respuesta\n - ";
+            getline(std::cin, text);
+        }
+        else
+        {
+            break;
+        }
+    }
+    return text;
+}
+

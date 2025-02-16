@@ -16,18 +16,22 @@ using namespace std;
  * \date 15/02/2025
 
  */
+ char caracteres[23] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '(', ')', '[', ']', '{', '}','+', '-','*', '/','^'};
 int main()
 {
     try{
-        cout << "Programa que resuelve una expresi\242n por medio de la Polaca Inversa" << endl;
-        cout << "Ingrese la expresi\242n matem\240tica que desea resolver" << endl;
+
         string elemento;
-        getline(cin,elemento);
-        //elemento = "2/1";
-        Expresion ejemplo(elemento);
-        cout << endl;
-        ejemplo.imprimir();
-        cout << "Resultado de la evaluaci\242n: " << ejemplo.Evaluar() << endl;
+
+            cout << "Programa que resuelve una expresi\242n por medio de la Polaca Inversa" << endl;
+            cout << "Ingrese la expresi\242n matem\240tica que desea resolver" << endl;
+
+            elemento = TextoPermitido(caracteres,23);
+            //elemento = "2/1";
+            Expresion ejemplo(elemento);
+            cout << endl;
+            ejemplo.imprimir();
+            cout << "Resultado de la evaluación: " << ejemplo.Evaluar() << endl;
 
     }catch(const char *mensaje){
         cerr << mensaje;
