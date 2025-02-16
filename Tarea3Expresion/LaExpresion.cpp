@@ -166,7 +166,7 @@ int Expresion::Prioridad(char simbolo){
 void Expresion::imprimir() const{
     std::cout << "Expresi\242n no fija: " << expresionNormal << std::endl;
     std::cout << "Expresi\242n polaca: " << expresionPolaca << std::endl;
-    std::cout << "Es v\240lida: " << (Valida ? "Ye" : "Nah") << std::endl;
+    std::cout << "Es v\240lida: " << (Valida ? "Ye  " : "Nah") << std::endl;
 }
 
 double Expresion::Evaluar(){
@@ -216,7 +216,6 @@ std::string TextoPermitido(const char caracteres[], unsigned int longitudCaracte
         {
             bool charValido = false;
 
-            // Check if current character is in the allowed characters array
             for (unsigned int i = 0; i < longitudCaracteres; i++)
             {
                 if (caracteres[i] == c)

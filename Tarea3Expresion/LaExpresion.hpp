@@ -16,6 +16,9 @@
  */
 class Expresion{
 public:
+    /** \brief Constructor por default de la clase Expresion, define la expresión normal, la conversión polaca y estado válido.
+     *
+     */
     Expresion();
     /** \brief Constructor de la clase Expresion, cuando el usuario ha ingresado una expresi�n
      *
@@ -47,7 +50,15 @@ public:
      *
      */
     int Prioridad(char simbolo);
+    /** \brief Función para imprimir tanto la expresión infija como la conversión polaca y si es válida o no.
+     *
+     */
     void imprimir() const;
+    /** \brief Función para evaluar la conversión polaca.
+     *
+     * \return pila, regresa el top de la pila donde se almacena el resultado de la evaluación.
+     *
+     */
     double Evaluar();
 
 private:
