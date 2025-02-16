@@ -16,33 +16,33 @@
  */
 class Expresion{
 public:
-    /** \brief Constructor por default de la clase Expresion, define la expresión normal, la conversión polaca y estado válido.
+    /** \brief Constructor por default de la clase Expresion, define la expresi&oacute;n normal, la conversi&oacute;n polaca y estado v&aacute;lido.
      *
      */
     Expresion();
     /** \brief Constructor de la clase Expresion, cuando el usuario ha ingresado una expresi�n
      *
-     * \param cadena std::string, La expresi�n dada por el usuario
+     * \param cadena std::string, La expresi&oacute;n dada por el usuario
      *
      */
     Expresion(std::string cadena);
 
-    /** \brief M�todo que val�da si el usuario ha ingresado la expresi�n matem�tica correctamente
+    /** \brief M&eacute;todo que val&iacute;da si el usuario ha ingresado la expresi&oacute;n matem&aacute;tica correctamente
      *
-     * \param cadena std::string, La expresi�n dada por el usuario
-     * \return bool, Devuelve si es val�da o no
+     * \param cadena std::string, La expresi&oacute;n dada por el usuario
+     * \return bool, Devuelve si es val&iacute;da o no
      *
      */
     bool Validar(std::string cadena);
 
-    /** \brief Convierte la expresi�n matem�tica a notaci�n polaca inversa
+    /** \brief Convierte la expresi&oacute;n matem&aacute;tica a notaci&oacute;n polaca inversa
      *
-     * \return std::string, Devuelve la expresi�n ya convertida a notaci�n polaca inversa
+     * \return std::string, Devuelve la expresi&oacute;n ya convertida a notaci&oacute;n polaca inversa
      *
      */
     std::string conversionPolaca();
 
-    /** \brief Funci�n que determina que operador se acumula o se desacumula dentro de la pila
+    /** \brief Funci&oacute;n que determina que operador se acumula o se desacumula dentro de la pila
             dependiendo de su prioridad dentro de los operadores
      *
      * \param simbolo char, se ingresa el operador que se esta leyendo en la cadena
@@ -50,13 +50,13 @@ public:
      *
      */
     int Prioridad(char simbolo);
-    /** \brief Función para imprimir tanto la expresión infija como la conversión polaca y si es válida o no.
+    /** \brief Funci&oacute;n para imprimir tanto la expresi&oacute;n infija como la conversi&oacute;n polaca y si es v&aacute;lida o no.
      *
      */
     void imprimir() const;
-    /** \brief Función para evaluar la conversión polaca.
+    /** \brief Funci&oacute;n para evaluar la conversi&oacute;n polaca.
      *
-     * \return pila, regresa el top de la pila donde se almacena el resultado de la evaluación.
+     * \return pila, regresa el top de la pila donde se almacena el resultado de la evaluaci&oacute;n.
      *
      */
     double Evaluar();

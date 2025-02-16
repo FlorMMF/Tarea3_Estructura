@@ -9,7 +9,7 @@ using namespace std;
  * \file main.cpp
 
  * Este archivo contiene las pruebas de la clase Expresion
- * Se ingresa una expresion matemática y la clase la convierte a notacion polaca y la resuelve
+ * Se ingresa una expresion matem&aacute;tica y la clase la convierte a notacion polaca y la resuelve
 
  * \author Flor Machado y Elias Peregrina
 
@@ -31,7 +31,7 @@ int main()
             Expresion ejemplo(elemento);
             cout << endl;
             ejemplo.imprimir();
-            cout << "Resultado de la evaluación: " << ejemplo.Evaluar() << endl;
+            cout << "Resultado de la evaluaci\242n: " << ejemplo.Evaluar() << endl;
 
     }catch(const char *mensaje){
         cerr << mensaje;

@@ -16,7 +16,7 @@ using namespace std;
  * \file LaExpresion.cpp
 
  * Este archivo contiene funciones y constructores de la clase Expresion
- * Se desarrollan los métodos declarados en el archivo LaExpresion.hpp
+ * Se desarrollan los m&eacute;todos declarados en el archivo LaExpresion.hpp
 
  * \author Flor Machado y Elias Peregrina
 
@@ -207,39 +207,30 @@ std::string TextoPermitido(const char caracteres[], unsigned int longitudCaracte
         }
     }
 
-    while (true)
-    {
+    while (true){
         bool textoValido = true;
-
 
         for (char c : text)
         {
             bool charValido = false;
 
-            for (unsigned int i = 0; i < longitudCaracteres; i++)
-            {
-                if (caracteres[i] == c)
-                {
+            for (unsigned int i = 0; i < longitudCaracteres; i++){
+                if (caracteres[i] == c){
                     charValido = true;
                     break;
                 }
             }
 
-
-            if (!charValido)
-            {
+            if (!charValido){
                 textoValido = false;
                 break;
             }
         }
 
-        if (!textoValido)
-        {
+        if (!textoValido){
             std::cout << "\nIngresa de nuevo tu respuesta\n - ";
             getline(std::cin, text);
-        }
-        else
-        {
+        }else{
             break;
         }
     }
