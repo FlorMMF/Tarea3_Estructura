@@ -4,7 +4,7 @@
 
  * \file LaExpresion.hpp
 
- * Este archivo contiene la declaración de la clase Expresion
+ * Este archivo contiene la declaraciï¿½n de la clase Expresion
 
  * \author Flor Machado y Elias Peregrina
 
@@ -17,33 +17,33 @@
 class Expresion{
 public:
     Expresion();
-    /** \brief Constructor de la clase Expresion, cuando el usuario ha ingresado una expresión
+    /** \brief Constructor de la clase Expresion, cuando el usuario ha ingresado una expresiï¿½n
      *
-     * \param cadena std::string, La expresión dada por el usuario
+     * \param cadena std::string, La expresiï¿½n dada por el usuario
      *
      */
     Expresion(std::string cadena);
 
-    /** \brief Método que valída si el usuario ha ingresado la expresión matemática correctamente
+    /** \brief Mï¿½todo que valï¿½da si el usuario ha ingresado la expresiï¿½n matemï¿½tica correctamente
      *
-     * \param cadena std::string, La expresión dada por el usuario
-     * \return bool, Devuelve si es valída o no
+     * \param cadena std::string, La expresiï¿½n dada por el usuario
+     * \return bool, Devuelve si es valï¿½da o no
      *
      */
     bool Validar(std::string cadena);
 
-    /** \brief Convierte la expresión matemática a notación polaca inversa
+    /** \brief Convierte la expresiï¿½n matemï¿½tica a notaciï¿½n polaca inversa
      *
-     * \return std::string, Devuelve la expresión ya convertida a notación polaca inversa
+     * \return std::string, Devuelve la expresiï¿½n ya convertida a notaciï¿½n polaca inversa
      *
      */
     std::string conversionPolaca();
 
-    /** \brief Función que determina que operador se acumula o se desacumula dentro de la pila
+    /** \brief Funciï¿½n que determina que operador se acumula o se desacumula dentro de la pila
             dependiendo de su prioridad dentro de los operadores
      *
      * \param simbolo char, se ingresa el operador que se esta leyendo en la cadena
-     * \return int, devuelve el número asignado del operador por su prioridad
+     * \return int, devuelve el nï¿½mero asignado del operador por su prioridad
      *
      */
     int Prioridad(char simbolo);

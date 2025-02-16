@@ -27,7 +27,7 @@ int main()
         Expresion ejemplo(elemento);
         cout << endl;
         ejemplo.imprimir();
-        cout << "Resultado de la evaluación: " << ejemplo.Evaluar() << endl;
+        cout << "Resultado de la evaluaci\242n: " << ejemplo.Evaluar() << endl;
 
     }catch(const char *mensaje){
         cerr << mensaje;

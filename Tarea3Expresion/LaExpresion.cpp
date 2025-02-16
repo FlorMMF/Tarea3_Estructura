@@ -3,6 +3,7 @@
 #include <cstring>
 #include <string>
 #include <cmath>
+#include <sstream>
 #include "LaExpresion.hpp"
 #include "LaPila.hpp"
 
@@ -78,80 +79,64 @@ bool Expresion::Validar(std::string cadena){
 }
 
 std::string Expresion::conversionPolaca(){
-
-
     Pila<char> PilaSimbolos;
-    int j = 0;
-    int expPolacaLongitud;
-    for(unsigned i = 0; i < expresionNormal.size() ; ++i){
-        if((i > 0) && (isdigit(expresionNormal[i]) || (expresionNormal[i] == '.' )) &&
-           (isdigit(expresionNormal[i-1]) || (expresionNormal[i-1] == '.') ) ){
-           expresionPolaca += expresionNormal[i];
-        }else if(isdigit(expresionNormal[i])){
-            if(i > 0 && !isdigit(expresionNormal[i-1]) && expresionNormal[i-1] != '.') {
-                expresionPolaca += ',';  // Add comma before starting new number
+    std::string salida;
+    std::string numero;
+    
+    for (unsigned i = 0; i < expresionNormal.size(); ++i){
+        char c = expresionNormal[i];
+        
+        if (isdigit(c) || c == '.'){
+            numero += c;
+        } else{
+            if (!numero.empty()) {
+                salida += numero + ' ';
+                numero.clear();
             }
-            expresionPolaca += expresionNormal[i];
-        }else if(PilaSimbolos.EstaVacia() || (expresionNormal[i] == '(') || (expresionNormal[i] == '{') || (expresionNormal[i] == '[')){
-            PilaSimbolos.Apilar(expresionNormal[i]);
-        }else if (expresionNormal[i] == ')'){
-            j = i - 1;
-            while (expresionNormal[j] != '(' ){
-                expresionPolaca += PilaSimbolos.ObtenerTOPE();
+            if (c == '(' || c == '{' || c == '['){
+                PilaSimbolos.Apilar(c);
+            } else if (c == ')'){
+                while (!PilaSimbolos.EstaVacia() && PilaSimbolos.ObtenerTOPE() != '('){
+                    salida += PilaSimbolos.ObtenerTOPE();
+                    salida += ' ';
+                    PilaSimbolos.Desapilar();
+                }
                 PilaSimbolos.Desapilar();
-                --j;
-            }
-        }else if (expresionNormal[i] == '}'){
-             j = i - 1;
-            while (expresionNormal[j] != '{' ){
-                expresionPolaca += PilaSimbolos.ObtenerTOPE();
+            } else if (c == '}'){
+                while (!PilaSimbolos.EstaVacia() && PilaSimbolos.ObtenerTOPE() != '{'){
+                    salida += PilaSimbolos.ObtenerTOPE();
+                    salida += ' ';
+                    PilaSimbolos.Desapilar();
+                }
                 PilaSimbolos.Desapilar();
-                --j;
-            }
-       }else if (expresionNormal[i] == ']'){
-             j = i - 1;
-            while (expresionNormal[j] != '[' ){
-                expresionPolaca += PilaSimbolos.ObtenerTOPE();
+            } else if (c == ']'){
+                while (!PilaSimbolos.EstaVacia() && PilaSimbolos.ObtenerTOPE() != '['){
+                    salida += PilaSimbolos.ObtenerTOPE();
+                    salida += ' ';
+                    PilaSimbolos.Desapilar();
+                }
                 PilaSimbolos.Desapilar();
-                --j;
-            }
-       }else if(Prioridad(expresionNormal[i]) <= Prioridad(PilaSimbolos.ObtenerTOPE())){
-            while(!PilaSimbolos.EstaVacia() &&
-                  Prioridad(expresionNormal[i]) <= Prioridad(PilaSimbolos.ObtenerTOPE())) {
-                expresionPolaca += PilaSimbolos.ObtenerTOPE();
-                expresionPolaca += ',';
-                PilaSimbolos.Desapilar();
-            }
-            PilaSimbolos.Apilar(expresionNormal[i]);
-        }else{
-            PilaSimbolos.Apilar(expresionNormal[i]);
-       }
-        while(expresionPolaca.back() == ','){
-             expPolacaLongitud = expresionPolaca.size();
-            if(!isdigit(expresionPolaca[expPolacaLongitud-2])){
-                expresionPolaca.pop_back();
+            } else{
+                while (!PilaSimbolos.EstaVacia() && Prioridad(c) <= Prioridad(PilaSimbolos.ObtenerTOPE())){
+                    salida += PilaSimbolos.ObtenerTOPE();
+                    salida += ' ';
+                    PilaSimbolos.Desapilar();
+                }
+                PilaSimbolos.Apilar(c);
             }
         }
-
     }
-
+    
+    if (!numero.empty()){
+        salida += numero + ' ';
+    }
     while (!PilaSimbolos.EstaVacia()){
-        expresionPolaca += PilaSimbolos.ObtenerTOPE();
+        salida += PilaSimbolos.ObtenerTOPE();
+        salida += ' ';
         PilaSimbolos.Desapilar();
     }
-
-    for(unsigned i = 0; i < expresionPolaca.size() ; ++i){
-        if(expresionPolaca[i] == ',' || expresionPolaca[i] == '(' || expresionPolaca[i] == '{' || expresionPolaca[i] == '[' ){
-            if(!isdigit(expresionPolaca[i-1])){
-
-                expresionPolaca.erase(i,1);
-            }
-        }
-    }
-
-     //
-    return expresionPolaca;
-
+    return salida;
+    
 }
 
 int Expresion::Prioridad(char simbolo){
@@ -176,29 +161,34 @@ int Expresion::Prioridad(char simbolo){
 }
 
 void Expresion::imprimir() const{
-    std::cout << "Expresion no fija: " << expresionNormal << std::endl;
-    std::cout << "Expresion polaca: " << expresionPolaca << std::endl;
-    std::cout << "Es válida: " << (Valida ? "Ye" : "Nah") << std::endl;
+    std::cout << "Expresi\242n no fija: " << expresionNormal << std::endl;
+    std::cout << "Expresi\242n polaca: " << expresionPolaca << std::endl;
+    std::cout << "Es v\240lida: " << (Valida ? "Ye" : "Nah") << std::endl;
 }
 
 double Expresion::Evaluar(){
     Pila<double> pila;
-    for (char c : expresionPolaca){
-        if (isdigit(c)){
-            pila.Apilar(c - '0');
+    std::string digito;
+    std::istringstream iss(expresionPolaca);
+
+    while (iss >> digito) {
+        if (isdigit(digito[0]) || digito[0] == '.'){
+            pila.Apilar(stod(digito));
         } else {
             double operando2 = pila.ObtenerTOPE();
             pila.Desapilar();
             double operando1 = pila.ObtenerTOPE();
             pila.Desapilar();
-            switch (c){
+            
+            switch (digito[0]) {
                 case '+': pila.Apilar(operando1 + operando2); break;
                 case '-': pila.Apilar(operando1 - operando2); break;
                 case '*': pila.Apilar(operando1 * operando2); break;
                 case '/': pila.Apilar(operando1 / operando2); break;
-                case '^': pila.Apilar(pow(operando1,  operando2)); break;
+                case '^': pila.Apilar(pow(operando1, operando2)); break;
             }
         }
     }
+
     return pila.ObtenerTOPE();
 }

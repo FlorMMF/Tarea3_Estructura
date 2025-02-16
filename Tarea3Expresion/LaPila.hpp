@@ -6,7 +6,7 @@ template <typename Tipo>
 
  * \file LaPila.hpp
 
- * Este archivo contiene la declaración de la clase Pila y sus métodos
+ * Este archivo contiene la declaraciï¿½n de la clase Pila y sus mï¿½todos
 
  * \author Flor Machado y Elias Peregrina
 

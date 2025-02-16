@@ -1,10 +1,10 @@
-   #include <iostream>
+#include <iostream>
 
 /**
 
  * \file LaPila.tpp
 
- * Este archivo contiene una plantilla para los métodos declarados en el archivo LaPila.hpp
+ * Este archivo contiene una plantilla para los mï¿½todos declarados en el archivo LaPila.hpp
 
  * \author Flor Machado y Elias Peregrina
 
